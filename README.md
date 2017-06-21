@@ -1,24 +1,66 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# DB設計
+## 『User』
 
-Things you may want to cover:
+| column   | type        | option         |
+|:---------|:------------|:---------------|
+| name     | string      | Not null       |
+| title    | text        |                |
+| job      | string      |                |
+| profile  | text        |                |
+| avatar   | string      |                |
 
-* Ruby version
+1. has_many :prototypes
+2. has_many :likes
+3. has_many :comments
 
-* System dependencies
 
-* Configuration
 
-* Database creation
+## 『Prototype』
 
-* Database initialization
+| column    | type        | option         |
+|:--------- |:------------|:---------------|
+| title     | string      | Not null       |
+| concept   | text        |                |
+| catch_copy| string      | Not null       |
+| user_id   | reference   | foreign key    |
 
-* How to run the test suite
+1. belongs_to :user
+2. has_many :cupturedImages
+3. has_many :likes
+4. has_many :comments
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
+##『CapturedImage』
 
-* ...
+| column       | type        | option         |
+|:------------ |:------------|:---------------|
+| image        | string      | Not null       |
+| prototype_id | reference   | foreign key    |
+| user_id      | reference   | foreign key    |
+
+1. belongs_to :prototype
+
+
+##『Like』
+
+| column        | type        | option         |
+|:------------- |:------------|:---------------|
+| prototype_id  | int         | foreign key    |
+| group_id      | int         | foreign key    |
+
+1. belongs_to :user
+2. belongs_to :group
+
+
+## 『Comment』
+
+| column        | type        | option         |
+|:---------     |:------------|:---------------|
+| comment       | text        | Not null       |
+| prototype_id  | reference   | foreign key    |
+| user_id       | reference   | foreign key    |
+
+1. belongs_to :user
+2. belongs_to :prototype
