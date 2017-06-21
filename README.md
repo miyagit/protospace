@@ -1,24 +1,66 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# DB設計
+## 『users』
 
-Things you may want to cover:
+| column   | type        | option         |
+|:---------|:------------|:---------------|
+| name     | string      | Not null       |
+| title    | text        |                |
+| job      | string      |                |
+| profile  | text        |                |
+| avatar   | string      |                |
 
-* Ruby version
+1. has_many :prototypes
+2. has_many :likes
+3. has_many :comments
 
-* System dependencies
 
-* Configuration
 
-* Database creation
+## 『prototypes』
 
-* Database initialization
+| column    | type        | option            |
+|:--------- |:------------|:----------------- |
+| title     | string      | Not null          |
+| concept   | text        |                   |
+| catch_copy| string      | Not null          |
+| user_id   | reference   | foreign key, index|
 
-* How to run the test suite
+1. belongs_to :user
+2. has_many :images
+3. has_many :likes
+4. has_many :comments
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
+##『images』
 
-* ...
+| column       | type        | option               |
+|:------------ |:------------|:---------------------|
+| image        | string      | Not null             |
+| prototype_id | reference   | foreign key,index    |
+| user_id      | reference   | foreign key,index    |
+
+1. belongs_to :prototype
+
+
+##『likes』
+
+| column        | type        | option           |
+|:------------- |:------------|:-----------------|
+| prototype_id  | int         | foreign key,index|
+| group_id      | int         | foreign key,index|
+
+1. belongs_to :user
+2. belongs_to :group
+
+
+## 『comments』
+
+| column        | type        | option           |
+|:---------     |:------------|:-----------------|
+| comment       | text        | Not null         |
+| prototype_id  | reference   | foreign key,index|
+| user_id       | reference   | foreign key,index|
+
+1. belongs_to :user
+2. belongs_to :prototype
