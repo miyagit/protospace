@@ -36,7 +36,7 @@
 
 | column       | type        | option               |
 |:------------ |:------------|:---------------------|
-| image        | string      | Not null,index       |
+| image        | string      | Not null             |
 | prototype_id | reference   | foreign key,index    |
 | user_id      | reference   | foreign key,index    |
 
