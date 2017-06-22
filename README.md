@@ -36,9 +36,9 @@
 
 | column       | type        | option               |
 |:------------ |:------------|:---------------------|
-| image        | string      | Not null             |
+| image        | string      | Not null, index      |
 | prototype_id | reference   | foreign key,index    |
-| user_id      | reference   | foreign key,index    |
+| user_id      | reference   | foreign key          |
 
 1. belongs_to :prototype
 
