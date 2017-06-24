@@ -13,6 +13,7 @@ gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
 #haml適応
 gem 'haml-rails'
+gem 'bootstrap-sass'
 
 group :development, :test do
   gem 'byebug', platform: :mri
