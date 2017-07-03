@@ -7,9 +7,9 @@
     .row
       %ul.nav.nav-pills.col-lg-11
         %li.active{role: "presentation"}
-          %a{href: "#"} Popular PROTO
+          = link_to "Popular PROTO", "#"
         %li{role: "presentation"}
-          %a{href: "#"} Newest PROTO
+          = link_to "Newest PROTO", "#"
         %li
           = link_to "Users list", "#"
       %button{type: "button", class: "btn btn-default col-lg-1"} View Tags
@@ -18,20 +18,20 @@
   .row
     .col-sm-4.col-md-3.proto-content
       .thumbnail
-        %a{href: "/prototypes/show"}
+        = link_to "/prototypes/show" do
           = image_tag("sample.png")
           .caption
             %h3 Salvation Army on iPad App Wireframe
             .proto-meta
               .proto-user
-                %a{href: "#"} by user
+                = link_to "by user" "#"
               .proto-posted
                 Apr 26
             %ul.proto-tag-list.list-inline
               %li
-                %a{href: "#", class: "btn btn-default"} iPad
+                = link_to "iPad", "#", class: "btn btn-default"
               %li
-                %a{href: "#", class: "btn btn-default"} wireframe
+                = link_to "wireframe", "#", class: "btn btn-default"
     .col-sm-4.col-md-3.proto-content
       .thumbnail
         %a{href: "/prototypes/show"}
