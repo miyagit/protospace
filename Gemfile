@@ -15,6 +15,8 @@ gem 'turbolinks', '~> 5'
 gem 'haml-rails'
 gem 'bootstrap-sass'
 gem 'devise'
+#画像系
+gem 'carrierwave'
 
 group :development, :test do
   gem 'byebug', platform: :mri
