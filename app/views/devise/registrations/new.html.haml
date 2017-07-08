@@ -10,7 +10,7 @@
               = f.text_field :name, placeholder: 'Name', autofocus: true
             .user-image.col-md-2.js-avatar-uploader
               %button.btn.btn-primary Add image
-              %input{type: 'file'}/
+              = f.file_field :avatar
           .user-email
             = f.email_field :email, placeholder: 'E-Mail'
           .user-password
