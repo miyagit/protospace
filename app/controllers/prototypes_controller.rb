@@ -1,10 +1,12 @@
 class PrototypesController < ApplicationController
 
-  def index
-  end
+	def index
+		@prototypes = Prototype.where(user_id: current_user)
+	end
 
-  def show
-  end
+	def show
+		@prototype = Prototype.find(params[:id])
+	end
 
   def new
     @prototype = Prototype.new
