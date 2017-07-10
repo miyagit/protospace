@@ -12,7 +12,7 @@
               %button.btn.btn-primary Add image
               %input{type: 'file'}/
           .user-email
-            = f.email_field :email, placeholder: 'E-Mail'
+            = f.email_field :email, placeholder: 'E-Mail', required: true
           .user-password
             = f.password_field :password, placeholder: 'Password', autocomplete: 'off', required: true
         .col-md-12
