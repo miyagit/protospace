@@ -17,22 +17,32 @@
 .container.proto-list
   .row
     - @prototypes.each do |prototype|
-      .col-sm-4.col-md-3.proto-content
-        .thumbnail
-          = link_to prototype_path(prototype.id) do
-            = image_tag("sample.png")
-            .caption
-              %h3 Salvation Army on iPad App Wireframe
-              .proto-meta
-                .proto-user
-                  = link_to "by user" "#"
-                .proto-posted
-                  Apr 26
-              %ul.proto-tag-list.list-inline
-                %li
-                  = link_to "iPad", "#", class: "btn btn-default"
-                %li
-                  = link_to "wireframe", "#", class: "btn btn-default"
+      - if user_signed_in? && prototype.user_id == current_user.id
+        .col-sm-4.col-md-3.proto-content
+          .dropdown.drop_menu_location
+            %btn.btn-default.dropdown-toggle(type="button" data-toggle="dropdown" id="dropdownMenu")
+              Action
+            %ul.dropdown-menu(aria-labelledby="dropdownMenu1")
+              %li
+                = link_to 'Delete', "/prototypes/#{prototype.id}", method: :delete
+              %li
+                = link_to 'Edit', "/prototypes/#{prototype.id}/edit"
+          .thumbnail
+            = link_to prototype_path(prototype.id) do
+              = image_tag("#{prototype.images[0].image}")
+              .caption
+                %h3
+                  = prototype.title
+                .proto-meta
+                  .proto-user
+                    = link_to "#{current_user.name}", "#{user_path(current_user)}"
+                  .proto-posted
+                    = create_time(prototype)
+                %ul.proto-tag-list.list-inline
+                  %li
+                    = link_to "iPad", "#", class: "btn btn-default"
+                  %li
+                    = link_to "wireframe", "#", class: "btn btn-default"
 
 .text-center
   %ul.pagination
