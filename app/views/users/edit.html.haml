@@ -5,12 +5,12 @@
         %h2 Edit Profile
         .user-name_image.row
           - if @user.errors.any?
-            %h2
-              = @user.errors.count
-              件のエラーがあります。
-            %ul
-              - @user.errors.full_messages.each do |msg|
-                %li
+            .alert
+              %h2
+                = @user.errors.count
+                件のエラーがあります。
+              %ul
+                - @user.errors.full_messages.each do |msg|
                   = msg
           = form_for current_user do |f|
             .user-name.col-md-10
@@ -36,4 +36,4 @@
                 .user-name.col-md-12
                   = f.text_area :job, placeholder: "Works", cols: "30", rows: "4"
               .row.text-center.user-btn
-                = f.submit 'Save',class: "btn btn-lg btn-primary btn-block"
+                = f.submit 'Save', class: "btn btn-lg btn-primary btn-block", data: { disable_with: '問い合わせ中...' }
