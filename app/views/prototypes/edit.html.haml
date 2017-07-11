@@ -6,19 +6,19 @@
     .row
       .col-md-12
         .cover-image-upload
-          = f.fields_for :images do |i|
+          = f.fields_for @prototype.image[0] do |i|
             = i.file_field :image, id: "file-input"
             = i.hidden_field :user_id, value: current_user.id
       .col-md-12
         %ul.proto-sub-list.list-group
           %li.list-group-item.col-md-4
             .image-upload
-              = f.fields_for :images do |i|
+              = f.fields_for @prototype.image[1] do |i|
                 = i.file_field :image, id: "file-input"
                 = i.hidden_field :user_id, value: current_user.id
           %li.list-group-item.col-md-4
             .image-upload
-              = f.fields_for :images do |i|
+              = f.fields_for @prototype.image[2] do |i|
                 = i.file_field :image, id: "file-input"
                 = i.hidden_field :user_id, value: current_user.id
           %li.list-group-item.col-md-4
