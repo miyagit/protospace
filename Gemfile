@@ -8,13 +8,13 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'jbuilder', '~> 2.5'
+gem 'devise'
 #見た目
 gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
 #haml適応
 gem 'haml-rails'
 gem 'bootstrap-sass'
-gem 'devise'
 #画像系
 gem 'carrierwave'
 
