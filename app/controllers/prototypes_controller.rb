@@ -6,19 +6,18 @@ class PrototypesController < ApplicationController
 	def show
 	end
 
-	def new
+  def new
     @prototype = Prototype.new
     @prototype.images.build
-	end
+  end
 
-	def create
+  def create
     Prototype.create(prototype_params)
-	end
+  end
 
 	private
 
-	def prototype_params
-		params.require(:prototype).permit(:title, :catch_copy, :concept, images_attributes: [:image, :user_id]).merge(user_id: current_user.id)
-	end
-
+  def prototype_params
+    params.require(:prototype).permit(:title, :catch_copy, :concept, images_attributes: [:image, :user_id]).merge(user_id: current_user.id)
+  end
 end
