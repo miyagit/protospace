@@ -12,12 +12,18 @@ class PrototypesController < ApplicationController
   end
 
   def create
-    Prototype.create(prototype_params)
+    prototype = current_user.prototypes.new(prototype_params)
+    if prototype.save
+      redirect_to root_path notice: "prototypeを投稿しました。"
+    else
+      render :new
+      flash[:alert] = "prototypeの投稿に失敗しました。"
+    end
   end
 
   private
 
   def prototype_params
-    params.require(:prototype).permit(:title, :catch_copy, :concept, images_attributes: [:image, :user_id]).merge(user_id: current_user.id)
+    params.require(:prototype).permit(:title, :catch_copy, :concept, images_attributes: [:image])
   end
 end
