@@ -1,10 +1,10 @@
 class PrototypesController < ApplicationController
 
-	def index
-	end
+  def index
+  end
 
-	def show
-	end
+  def show
+  end
 
   def new
     @prototype = Prototype.new
@@ -15,7 +15,7 @@ class PrototypesController < ApplicationController
     Prototype.create(prototype_params)
   end
 
-	private
+  private
 
   def prototype_params
     params.require(:prototype).permit(:title, :catch_copy, :concept, images_attributes: [:image, :user_id]).merge(user_id: current_user.id)
