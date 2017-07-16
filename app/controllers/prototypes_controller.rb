@@ -14,23 +14,18 @@ class PrototypesController < ApplicationController
   end
 
   def create
-    prototype = current_user.prototypes.new(prototype_params)
-    if prototype.save
-      redirect_to root_path notice: "prototypeを投稿しました。"
-    else
-      render :new
-      flash[:alert] = "prototypeの投稿に失敗しました。"
-    end
+    Prototype.create(prototype_create_params)
+    redirect_to root_path, notice: "prototypeを投稿しました。"
   end
 
 	def edit
 		@prototype = Prototype.find(params[:id])
 	end
 
-	def update
-		Prototype.update(prototype_params)
-		redirect_to root_path, notice: "prototypeの情報を更新しました。"
-	end
+  def update
+    Prototype.update(prototype_update_params)
+    redirect_to root_path, notice: "prototypeの情報を更新しました。"
+  end
 
   def destroy
     prototype = Prototype.find(params[:id])
@@ -42,7 +37,12 @@ class PrototypesController < ApplicationController
 
 	private
 
-  def prototype_params
-    params.require(:prototype).permit(:title, :catch_copy, :concept, images_attributes: %w(image status))
+  def prototype_create_params
+    params.require(:prototype).permit(:title, :catch_copy, :concept, images_attributes: [:image, :user_id]).merge(user_id: current_user.id)
   end
+
+  def prototype_update_params
+    params.require(:prototype).permit(:title, :catch_copy, :concept, images_attributes: [:id, :image, :user_id]).merge(user_id: current_user.id)
+  end
+
 end
