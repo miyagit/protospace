@@ -10,17 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170707054416) do
+ActiveRecord::Schema.define(version: 20170707055808) do
 
   create_table "images", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "image",        default: "", null: false
-    t.integer  "user_id"
     t.integer  "prototype_id"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.index ["image"], name: "index_images_on_image", using: :btree
     t.index ["prototype_id"], name: "index_images_on_prototype_id", using: :btree
-    t.index ["user_id"], name: "index_images_on_user_id", using: :btree
   end
 
   create_table "prototypes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -56,6 +54,5 @@ ActiveRecord::Schema.define(version: 20170707054416) do
   end
 
   add_foreign_key "images", "prototypes"
-  add_foreign_key "images", "users"
   add_foreign_key "prototypes", "users"
 end
