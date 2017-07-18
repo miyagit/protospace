@@ -23,6 +23,7 @@ class PrototypesController < ApplicationController
 	end
 
   def update
+    binding.pry
     Prototype.update(prototype_update_params)
     redirect_to root_path, notice: "prototypeの情報を更新しました。"
   end
@@ -38,11 +39,11 @@ class PrototypesController < ApplicationController
 	private
 
   def prototype_create_params
-    params.require(:prototype).permit(:title, :catch_copy, :concept, images_attributes: [:image, :user_id]).merge(user_id: current_user.id)
+    params.require(:prototype).permit(:title, :catch_copy, :concept, images_attributes: [:image]).merge(user_id: current_user.id)
   end
 
   def prototype_update_params
-    params.require(:prototype).permit(:title, :catch_copy, :concept, images_attributes: [:id, :image, :user_id]).merge(user_id: current_user.id)
+    params.require(:prototype).permit(:title, :catch_copy, :concept, images_attributes: [:id, :image]).merge(user_id: current_user.id)
   end
 
 end
