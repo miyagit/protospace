@@ -1,7 +1,7 @@
 class PrototypesController < ApplicationController
 
 	def index
-		@prototypes = Prototype.all
+    @prototypes = Prototype.includes(:user).page(params[:page]).per(1)
 	end
 
 	def show
