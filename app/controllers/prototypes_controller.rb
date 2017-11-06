@@ -23,7 +23,6 @@ class PrototypesController < ApplicationController
 	end
 
   def update
-    binding.pry
     Prototype.update(prototype_update_params)
     redirect_to root_path, notice: "prototypeの情報を更新しました。"
   end
