@@ -10,25 +10,45 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170718062657) do
+ActiveRecord::Schema.define(version: 20171106122549) do
+
+  create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "content",      default: "", null: false
+    t.integer  "user_id"
+    t.integer  "prototype_id"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.index ["prototype_id"], name: "index_comments_on_prototype_id", using: :btree
+    t.index ["user_id"], name: "index_comments_on_user_id", using: :btree
+  end
 
   create_table "images", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "image",        default: "", null: false
     t.integer  "prototype_id"
+    t.integer  "status"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
-    t.integer  "status"
     t.index ["image"], name: "index_images_on_image", using: :btree
     t.index ["prototype_id"], name: "index_images_on_prototype_id", using: :btree
   end
 
-  create_table "prototypes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "title",                    default: "", null: false
-    t.text     "concept",    limit: 65535
-    t.string   "catch_copy",               default: "", null: false
+  create_table "likes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
+    t.integer  "prototype_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["prototype_id"], name: "index_likes_on_prototype_id", using: :btree
+    t.index ["user_id"], name: "index_likes_on_user_id", using: :btree
+  end
+
+  create_table "prototypes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "title",                     default: "", null: false
+    t.text     "concept",     limit: 65535
+    t.string   "catch_copy",                default: "", null: false
+    t.integer  "user_id"
+    t.integer  "likes_count"
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
     t.index ["user_id"], name: "index_prototypes_on_user_id", using: :btree
   end
 
@@ -54,6 +74,10 @@ ActiveRecord::Schema.define(version: 20170718062657) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "comments", "prototypes"
+  add_foreign_key "comments", "users"
   add_foreign_key "images", "prototypes"
+  add_foreign_key "likes", "prototypes"
+  add_foreign_key "likes", "users"
   add_foreign_key "prototypes", "users"
 end
