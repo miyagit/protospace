@@ -13,10 +13,8 @@
             %span.degree we-b inc. Designer
 
     .col-md-6.text-right
-      %button.btn.btn-default
-        = image_tag("icon_heart.svg")
-        Like
-        %span.num 20
+      #like-buttons
+        = render partial: "prototypes/like", locals: { prototype: @prototype, like: @like }
   .row
     - @prototype.images.each_with_index do |image, i|
       - if i == 0
