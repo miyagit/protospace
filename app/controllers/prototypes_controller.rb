@@ -4,10 +4,12 @@ class PrototypesController < ApplicationController
     @prototypes = Prototype.includes(:user).page(params[:page]).per(1)
 	end
 
-	def show
+  def show
     @prototype = Prototype.find(params[:id])
     @like = @prototype.likes.find_by(user_id: @prototype.user.id, prototype_id: params[:id])
-	end
+    @comment = Comment.new
+    @comments = @prototype.comments
+  end
 
   def new
     @prototype = Prototype.new
