@@ -1,0 +1,3 @@
+$("#comment_content").val('');
+$(".js-comment_size").text(<%= @prototype.comments.size %>);
+$(".comment_list").html("<%= j(render partial: 'prototypes/comment', collection: @comments) %>");
