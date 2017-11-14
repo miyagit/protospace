@@ -1,7 +1,8 @@
 class PrototypesController < ApplicationController
 
 	def index
-    @prototypes = Prototype.includes(:user).page(params[:page]).per(1)
+    @prototypes = Prototype.includes(:user, :main_image).order("likes_count DESC").page(params[:page]).per(3)
+    @active     = "popular"
 	end
 
   def show
