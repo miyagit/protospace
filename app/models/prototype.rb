@@ -1,8 +1,9 @@
 class Prototype < ApplicationRecord
 	belongs_to :user
-	has_many :images, dependent: :destroy
-	has_many :likes,  dependent: :destroy
-	has_many :comments
+	has_many :images,   dependent: :destroy
+	has_many :likes,    dependent: :destroy
+	has_many :comments, dependent: :destroy
+	has_one  :main_image, class_name: Image
 	accepts_nested_attributes_for :images, allow_destroy: true
 
 	def like_user(user_id)
