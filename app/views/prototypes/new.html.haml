@@ -2,24 +2,23 @@
   .col-md-8.col-md-offset-2
     %header.row.user-nav.row
       .col-md-12
-        = f.text_field :title, placeholder: "Title", class: "proto-new-title"
+        = f.text_field :title, placeholder: "Title", class: "proto-new-title", required: true
     .row
       .col-md-12
-        .cover-image-upload
+        .cover-image-upload#main_image_uploader.preview
           = f.fields_for :images do |i|
-            = i.file_field :image
+            %img
+            = i.file_field :image, required: true
             = i.hidden_field :status, value: 'main'
       .col-md-12
         %ul.proto-sub-list.list-group
-          - 2.times do
+          - 3.times do
             %li.list-group-item.col-md-4
-              .image-upload
+              .image-upload.preview
                 = f.fields_for :images do |i|
+                  %img
                   = i.file_field :image
                   = i.hidden_field :status, value: 'sub'
-          %li.list-group-item.col-md-4
-            .image-upload-plus
-              %span +
     .row.proto-description
       .col-md-12
         = f.text_field :catch_copy, placeholder: "Catch Copy"
