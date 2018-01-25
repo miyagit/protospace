@@ -4,22 +4,21 @@
       .col-md-12
         = f.text_field :title, placeholder: "Title", class: "proto-new-title"
     .row
-      = f.fields_for :images, @prototype.images do |i|
+      = f.fields_for :images, @prototype.images[0] do |i|
         .col-md-12
           - if i.index == 0
-            .cover-image-upload
-              = i.file_field :image, id: "file-input"
+            .cover-image-upload.upload
+              = image_tag i.object.image
+              = i.file_field :image, id: "file-input", required: true
               = i.hidden_field :user_id, value: current_user.id
       .col-md-12
         %ul.proto-sub-list.list-group
           = f.fields_for :images, @prototype.images do |i|
             - if i.index != 3
               %li.list-group-item.col-md-4
-                .image-upload
+                .image-upload.upload
+                  = image_tag i.object.image
                   = i.file_field :image, id: "file-input"
-          %li.list-group-item.col-md-4
-            .image-upload-plus
-              %span +
     .row.proto-description
       .col-md-12
         = f.text_field :catch_copy, placeholder: "Catch Copy"
