@@ -12,4 +12,4 @@
           = link_to "Newest PROTO", newest_index_path
         %li
           = link_to "Users list", "#"
-      %button{type: "button", class: "btn btn-default col-lg-1"} View Tags
+      = button_to 'View Tags', tags_path, class: "btn btn-default col-lg-1", method: :get

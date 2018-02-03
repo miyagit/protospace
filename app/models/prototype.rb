@@ -6,6 +6,9 @@ class Prototype < ApplicationRecord
 	has_one  :main_image, class_name: Image
 	accepts_nested_attributes_for :images, allow_destroy: true, reject_if: proc { |attributes| attributes['image'].blank? }, limit: 4
 
+	acts_as_taggable
+	acts_as_taggable_on :tags
+
 	def like_user(user_id)
 		likes.find_by(user_id: user_id)
 	end

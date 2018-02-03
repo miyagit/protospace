@@ -1,9 +1,11 @@
 class PrototypesController < ApplicationController
 
-	def index
+  before_action :authenticate_user!, only: [:index, :new]
+
+  def index
     @prototypes = Prototype.includes(:user, :main_image).order("likes_count DESC").page(params[:page]).per(3)
     @active     = "popular"
-	end
+  end
 
   def show
     @prototype = Prototype.find(params[:id])
@@ -42,11 +44,11 @@ class PrototypesController < ApplicationController
 	private
 
   def prototype_create_params
-    params.require(:prototype).permit(:title, :catch_copy, :concept, images_attributes: [:image, :status]).merge(user_id: current_user.id)
+    params.require(:prototype).permit(:title, :catch_copy, :concept, images_attributes: [:image, :status]).merge(user_id: current_user.id, tag_list: params[:prototype][:tag_list])
   end
 
   def prototype_update_params
-    params.require(:prototype).permit(:title, :catch_copy, :concept, images_attributes: [:id, :image]).merge(user_id: current_user.id)
+    params.require(:prototype).permit(:title, :catch_copy, :concept, :tag_list, images_attributes: [:id, :image]).merge(user_id: current_user.id)
   end
 
 end

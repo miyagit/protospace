@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 	resources :users, only: %w(show edit update delete)
 
 	resources :prototypes
+	resources :tags, only: [:index, :show]
 
   scope module: :prototypes do
     resources :likes, only: %w(create destroy)
