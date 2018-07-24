@@ -17,6 +17,8 @@ gem 'haml-rails'
 gem 'bootstrap-sass'
 #画像系
 gem 'carrierwave'
+#タグ管理
+gem 'acts-as-taggable-on', '~> 4.0'
 
 group :development, :test do
   gem 'byebug', platform: :mri

@@ -27,12 +27,9 @@
       .col-md-12
         %h4 Tag List
         .row
-          .col-md-3
-            %input{type: "text", placeholder: "Web Design"}/
-          .col-md-3
-            %input{type: "text", placeholder: "UI"}/
-          .col-md-3
-            %input{type: "text", placeholder: "Application"}/
+          - 3.times do |n|
+            .col-md-3
+              = text_field_tag 'prototype[tag_list][]', "", placeholder: "Tag#{n + 1}"
     .row.text-center.proto-btn
       %button.btn.btn-lg.btn-primary.btn-block
         = f.submit "Publish"

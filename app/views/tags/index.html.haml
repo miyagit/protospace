@@ -1,0 +1,8 @@
+.container
+  .row
+    .tags-list
+      %ul
+        - @tags.each do |tag|
+          %li.col-md-4.tag_style
+            = link_to tag.name, tag_path(tag)
+

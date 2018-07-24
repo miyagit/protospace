@@ -20,7 +20,4 @@
             .proto-posted
               = create_time(prototype)
           %ul.proto-tag-list.list-inline
-            %li
-              = link_to "iPad", "#", class: "btn btn-default"
-            %li
-              = link_to "wireframe", "#", class: "btn btn-default"
+            = render prototype.tags
